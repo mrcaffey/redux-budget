@@ -2,6 +2,7 @@
 const ADD_ENTRY = 'ADD_ENTRY'
 const REMOVE_ENTRY = 'REMOVE_ENTRY'
 const ADD_ITEM = 'ADD_ITEM'
+const TOGGLE_SHOW = 'TOGGLE_SHOW'
 
 //Actions
 const addEntry = (entry) => {
@@ -16,16 +17,26 @@ const addItem = (item) => {
   return { type: ADD_ITEM, item }
 }
 
-//Reducer
-//1. wish list items
-//2. ledger
+const toggleShow = () => {
+  return { type: TOGGLE_SHOW }
+}
 
+//Reducers
+
+const showAll = ( state = true, action ) => {
+  switch(action.type) {
+  case TOGGLE_SHOW:
+    return !state
+  default: 
+    return state
+  }
+}
 
 const items = ( state = [], action ) => {
   switch(action.type) {
     case ADD_ITEM:
       return [...state, action.item]
-    default: 
+    default:
       return state
   }
 }
@@ -51,6 +62,7 @@ const { createStore, combineReducers, compose } = Redux
 
 const rootReducer = combineReducers({
   ledger,
+  items,
 })
 
 const store = createStore(
@@ -91,23 +103,29 @@ const updateHistory = () => {
   })
 }
 
+const updateItems = () => {
+  const list = document.getElementById('items')
+  list.innerHTML = null
+  const { items } = store.getState()
+  items.forEach( (item) => {
+    const li = document.createElement('li')
+    li.innerHTML = `$${item.cost} - ${item.description}`
+    list.appendChild(li)
+  })
+}
 
 const formElements = (form) => {
   const obj = {}
   for (let el of form.elements) {
     if (el.name)
-      obj[el.name]  = el.value
-    }
-
-      return obj
+      obj[el.name] = el.value
   }
 
-
-
+  return obj
+}
 
 const handleSubmit = (e) => {
   e.preventDefault()
-  const obj = {}
   const form = e.target
   const obj = formElements(form)
 
@@ -124,12 +142,13 @@ const handleItemForm = (e) => {
 }
 
 const log = () => {
-  console.log( store.getState().ledger )
+  console.log( store.getState() )
 }
-
 
 store.subscribe(updateHistory)
 store.subscribe(sumEntries)
 store.subscribe(log)
+store.subscribe(updateItems)
 
 document.getElementById('add_entry').addEventListener('submit', handleSubmit)
+document.getElementById('add_item').addEventListener('submit', handleItemForm)
