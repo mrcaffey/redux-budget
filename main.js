@@ -63,6 +63,7 @@ const { createStore, combineReducers, compose } = Redux
 const rootReducer = combineReducers({
   ledger,
   items,
+  showAll,
 })
 
 const store = createStore(
@@ -71,18 +72,27 @@ const store = createStore(
   window.__REDUX_DEVTOOLS_EXTENSION && window.__REDUX_DEVTOOLS_EXTENSION()
 )
 
+const filterShow = (e) => {
+  const { showAll } = store.getState()
+  e.target.innerHTML = showAll ? 'Show All' : 'Affordable'
+  store.dispatch(toggleShow())
+}
+
 const sumEntries = () => {
   const h1 = document.getElementById('total')
   h1.innerHTML = null
+  const value = sumTotal()
+  h1.innerHTML = `$${value}`
+}
+
+const sumTotal = () => {
   const { ledger } = store.getState()
-  const value = ledger.reduce( (total, entry) => {
+  return ledger.reduce( (total, entry) => {
     const amt = parseFloat(entry.amt)
     if (entry.type === 'Credit')
       return total + amt
-    return total - amt
+    return toal - amt
   }, 0)
-
-  h1.innerHTML = `$${value}`
 }
 
 const updateHistory = () => {
@@ -106,8 +116,11 @@ const updateHistory = () => {
 const updateItems = () => {
   const list = document.getElementById('items')
   list.innerHTML = null
-  const { items } = store.getState()
-  items.forEach( (item) => {
+  const { items, showAll } = store.getState()
+  const total = sumTotal()
+  const affordable = items.filter( i => parseFloat(i.cost) <= total )
+  const filtered = showAll ? items : affordable
+  filter.forEach( (item) => {
     const li = document.createElement('li')
     li.innerHTML = `$${item.cost} - ${item.description}`
     list.appendChild(li)
@@ -152,3 +165,4 @@ store.subscribe(updateItems)
 
 document.getElementById('add_entry').addEventListener('submit', handleSubmit)
 document.getElementById('add_item').addEventListener('submit', handleItemForm)
+document.getElementById('show').addEventListener('click', filterShow)
