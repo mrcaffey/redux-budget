@@ -21,14 +21,13 @@ const toggleShow = () => {
   return { type: TOGGLE_SHOW }
 }
 
-//Reducers
-
+//Reducer
 const showAll = ( state = true, action ) => {
-  switch(action.type) {
-  case TOGGLE_SHOW:
-    return !state
-  default: 
-    return state
+  switch( action.type) {
+    case TOGGLE_SHOW:
+      return !state
+    default:
+      return state
   }
 }
 
@@ -91,7 +90,7 @@ const sumTotal = () => {
     const amt = parseFloat(entry.amt)
     if (entry.type === 'Credit')
       return total + amt
-    return toal - amt
+    return total - amt
   }, 0)
 }
 
@@ -120,7 +119,7 @@ const updateItems = () => {
   const total = sumTotal()
   const affordable = items.filter( i => parseFloat(i.cost) <= total )
   const filtered = showAll ? items : affordable
-  filter.forEach( (item) => {
+  filtered.forEach( (item) => {
     const li = document.createElement('li')
     li.innerHTML = `$${item.cost} - ${item.description}`
     list.appendChild(li)
