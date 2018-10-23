@@ -4,6 +4,8 @@ import WishList from './WishList'
 import LedgerForm from './LedgerForm'
 import WishListForm from './WishListForm'
 import { Flex } from './Shared'
+import { connect } from 'react-redux'
+import { getEntries } from '../reducers/ledger'
 
 const App = () => (
   <div>
