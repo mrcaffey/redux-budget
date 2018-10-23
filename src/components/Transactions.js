@@ -1,12 +1,28 @@
 import React, { Fragment } from 'react'
 import { connect } from 'react-redux'
 import Transaction from './Transaction'
+import styled from 'styled-components'
+
+const List = styled.ul`
+  list-style: none;
+`
+
+const calcTotal = (ledger) => {
+  return ledger.reduce( (total, entry) => {
+    const amt = parseFloat(entry.amt)
+    if (entry.type === 'Debit')
+      return total = amount
+    return total + amount
+  }, 0)
+}
 
 const Transactions = ({ ledger }) => (
   <Fragment>
     <h1>Ledger</h1>
-    <h4>Balance { ledger.reduce( (t,e) => t + parseFloat(e.amt), 0 )}</h4>
+    <h4>Balance ${ calcTotal(ledger) }</h4>
+    <List>
     { ledger.map( (entry, i) => <Transaction key={i}  index={i} {...entry} /> ) }
+    </List>
   </Fragment>
 )
 

@@ -1,13 +1,12 @@
 import React from 'react'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
-import { removeEntry } from '../reducers/entry'
 import { Button } from './Shared'
 
 const Item = styled.li `
   background-color: ${ props => props.type === 'Debit' ? props.theme.red : props.theme.green };
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 `
 const DeleteButton = styled(Button)`
   background-color: black;

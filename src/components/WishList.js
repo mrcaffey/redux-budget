@@ -1,12 +1,12 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import WishListForm from './WishListForm'
 import Items from './Items'
 
 const WishList = () => (
-  <Fragment>
+  <div>
     <WishListForm />
     <Items />
-  </Fragment>
+  </div>
 )
 
 export default WishList

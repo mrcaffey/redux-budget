@@ -1,20 +1,20 @@
 import React from 'react'
-import styled from 'styled-components'
 import Ledger from './Ledger'
 import WishList from './WishList'
-
-const Container = styled.div`
-  display:flex;
-  justify-content: space-around;
-`
-
+import LedgerForm from './LedgerForm'
+import WishListForm from './WishListForm'
+import { Flex } from './Shared'
 
 const App = () => (
   <div>
-    <Container>
+  <Flex alignItems="stretch">
+    <LedgerForm />
+    <WishListForm />
+   </Flex>
+   <Flex justifyContent="space-around">
       <Ledger />
       <WishList />
-    </Container>
+   </Flex>
   </div>
 )
 

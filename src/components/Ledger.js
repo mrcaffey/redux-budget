@@ -1,12 +1,10 @@
-import React, { Fragment } from 'react'
-import LedgerForm from './LedgerForm'
+import React from 'react'
 import Transactions from './Transactions'
 
 const Ledger = () => (
-  <Fragment>
-    <LedgerForm />
+  <div>
     <Transactions />
-  </Fragment>
+  </div>
 )
 
 export default Ledger
