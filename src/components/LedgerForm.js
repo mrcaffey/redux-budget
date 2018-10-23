@@ -51,6 +51,15 @@ class LedgerForm extends React.Component {
               value={description}
               onChange={this.handleChange}
               />
+              <select
+                name="type"
+                onChange={this.handleChange}
+                value={type}
+              >
+                <option>Debit</option>
+                <option>Credit</option>
+              </select>
+              <Button>Add Item</Button>
           </Flex>
       </FormBox>
     )
