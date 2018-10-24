@@ -1,14 +1,29 @@
 import React from 'react'
-import { connect } from 'react-redux'
+import { Switch, Route } from 'react-router-dom'
+import { ProtectedRoute } from '@devpoint/dps-react-kit'
 import Home from './Home'
 import Auth from './Auth'
+import FetchUser from './FetchUser'
 
-class App extends React.Component {
+const App = () => (
+  <>
+  <FetchUser>
+      <Switch>
+        <ProtectedRoute exact path="/" component={Home} />
+      <Route
+        exact
+        path="/login"
+        render={ (props) => <Auth {...props} type="Login" /> }
+        />
+        <Route
+        exact
+        path="/register"
+        render={ (props) => <Auth {...props} type="Register" /> }
+        /> 
+      </Switch>
+    </FetchUser>
+    </>
 
-}
+)
 
-const mapStateToProps = (state) => {
-  return { authenticated: state.user.id }
-}
-
-export default connect(mapStateToProps)(App)
+export default App
