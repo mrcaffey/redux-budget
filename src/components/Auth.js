@@ -12,12 +12,12 @@ class Auth extends React.Component {
 
   handleSubmit = (e) => {
     e.preventDefault()
-    const { type, dispatch, cb } = this.props
+    const { type, dispatch, history } = this.props
     const creds = this.state
     if (type === 'Register')
-      dispatch(register(creds, cb))
+      dispatch(register(creds, history))
     else
-      dispatch(login(creds, cb))
+      dispatch(login(creds, history))
   }
 
   render() {
