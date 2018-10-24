@@ -10,10 +10,12 @@
     "webpack-dev-server": "^3.1.9"
   },
   "dependencies": {
+    "@devpoint/dps-react-kit": "^1.0.6",
     "devise-axios": "^1.0.24",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
     "react-redux": "^5.0.7",
+    "react-router-dom": "^4.3.1",
     "redux": "^4.0.1",
     "styled-components": "^4.0.2"
   },
