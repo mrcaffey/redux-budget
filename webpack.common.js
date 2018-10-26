@@ -8,15 +8,15 @@ const config = {
     path: path.resolve(__dirname, "dist"),
     filename: "bundle.js",
     publicPath: "/"
-},
+  },
 
-plugins: [
-  new CleanWebpackPlugin(['dist']),
-  new HtmlWebpackPlugin({
-    title: 'Budget',
-    template: './index.html'
-  })
-],
+  plugins: [
+    new CleanWebpackPlugin(['dist']),
+    new HtmlWebpackPlugin({
+      title: 'Budget',
+      template: './index.html'
+    })
+  ],
 
   module: {
     rules: [
