@@ -12,7 +12,7 @@ class WishListForm extends React.Component {
   defaultState = {
     cost: '',
     description: '',
-    type: 'Want',
+    item_type: 'Want',
   }
 
   state = this.defaultState
@@ -27,43 +27,43 @@ class WishListForm extends React.Component {
     const { value, name } = e.target
     this.setState({ [name]: value })
   }
-  
-  render(){
-    const { cost, description, type } = this.state
+
+  render() {
+    const { cost, description, item_type } = this.state
     return (
-      <FormBox onSubmit = { this.handleSubmit}>
+      <FormBox onSubmit={this.handleSubmit}>
         <Flex
           alignItems="stretch"
           direction="column"
+        >
+          <Input
+            type="number"
+            min="0"
+            name="cost"
+            value={cost}
+            onChange={this.handleChange}
+            placeholder="Cost"
+            required
+          />
+          <Input
+            name="description"
+            placeholder="Description"
+            value={description}
+            onChange={this.handleChange}
+          />
+          <select
+            name="item_type"
+            onChange={this.handleChange}
+            value={item_type}
           >
-            <Input 
-              type="number"
-              min="0"
-              name="cost"
-              value={cost}
-              onChange={this.handleChange}
-              placeholder="Cost"
-              required
-              />
-            <Input
-              name="description"
-              placeholder="Description"
-              value={description}
-              onChange={this.handleChange}
-              />
-              <select
-                name="type"
-                onChange={this.handleChange}
-                value={type}
-              >
-                <option>Want</option>
-                <option>Need</option>
-              </select>
-              <Button>Add Item</Button>
-          </Flex>
+            <option>Want</option>
+            <option>Need</option>
+          </select>
+          <Button>Add Item</Button>
+        </Flex>
       </FormBox>
     )
   }
 }
 
-export default connect() (WishListForm)
+export default connect()(WishListForm)
