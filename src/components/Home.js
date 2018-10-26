@@ -1,7 +1,5 @@
 import React from 'react'
 import Ledger from './Ledger'
-import React from 'react'
-import Ledger from './Ledger'
 import WishList from './WishList'
 import LedgerForm from './LedgerForm'
 import WishListForm from './WishListForm'
@@ -9,7 +7,7 @@ import { Flex } from './Shared'
 import { connect } from 'react-redux'
 import { getEntries } from '../reducers/ledger'
 
-class App extends React.Component {
+class Home extends React.Component {
   componentDidMount() {
     this.props.dispatch(getEntries())
   }
