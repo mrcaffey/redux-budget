@@ -20,7 +20,7 @@ class Contact extends React.Component {
   }
 
   render() {
-    const { name, email, phone } = this.state
+    const { name, email, phone, body } = this.state
 
     return (
       <form onSubmit={this.handleSubmit}>
@@ -46,6 +46,7 @@ class Contact extends React.Component {
        />
        <textarea 
          required
+         name="body"
          value={body} 
          onChange={this.handleChange}
        >
