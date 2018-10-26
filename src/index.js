@@ -18,11 +18,12 @@ const theme = {
 ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
-    <ThemeProvider theme={theme}>
-      <App />
-    </ThemeProvider>
+      <ThemeProvider theme={theme}>
+        <App />
+      </ThemeProvider>
     </BrowserRouter>
   </Provider>,
-   document.getElementById('app'))
+  document.getElementById('app')
+)
 
 
