@@ -7,9 +7,8 @@ const Container = styled.div`
 `
 
 const Ledger = () => (
-  <div>
+  <Container>
     <Transactions />
-  </div>
+  </Container>
 )
-
 export default Ledger

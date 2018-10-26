@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 export const Flex = styled.div`
   display: flex;
-  align-items; ${ props => props.alignItems };
+  align-items: ${ props => props.alignItems };
   justify-content: ${ props => props.justifyContent };
   flex-direction: ${ props => props.direction };
 `
@@ -23,6 +23,7 @@ export const Button = styled.button`
   height: 40px;
   background-color: ${ props => props.theme.green };
 `
+
 
 
 
